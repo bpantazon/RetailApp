@@ -1,4 +1,5 @@
-﻿using RetailApp.Models;
+﻿using Microsoft.AspNet.Identity;
+using RetailApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace RetailApp.Controllers
             db = new ApplicationDbContext();
         }
         // GET: Manager
-        public ActionResult Index()
+        public ActionResult ManagerHome()
         {
             //default view = total sales for today?  total sales? 
             return View();
@@ -38,13 +39,15 @@ namespace RetailApp.Controllers
 
         // POST: Manager/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Manager manager)
         {
             try
             {
                 // TODO: Add insert logic here
-                
-                return RedirectToAction("Index");
+                db.Managers.Add(manager);
+                manager.ApplicationUserId = User.Identity.GetUserId();
+                db.SaveChanges();
+                return RedirectToAction("ManagerHome");
             }
             catch
             {

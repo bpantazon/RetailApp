@@ -110,3 +110,4 @@ C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\De
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.InitialCreate.resources
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.csproj.GenerateResource.cache
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.InitialMigration.resources
+C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.ApplicationIdManager.resources
