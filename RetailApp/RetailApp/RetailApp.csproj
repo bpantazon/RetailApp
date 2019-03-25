@@ -189,12 +189,21 @@
     <Compile Include="Migrations\201903251330005_NamesToSchedule.Designer.cs">
       <DependentUpon>201903251330005_NamesToSchedule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903251628491_Inventory.cs" />
+    <Compile Include="Migrations\201903251628491_Inventory.Designer.cs">
+      <DependentUpon>201903251628491_Inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903251632075_DbSetInventory.cs" />
+    <Compile Include="Migrations\201903251632075_DbSetInventory.Designer.cs">
+      <DependentUpon>201903251632075_DbSetInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Manager.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Sale.cs" />
@@ -291,6 +300,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903251330005_NamesToSchedule.resx">
       <DependentUpon>201903251330005_NamesToSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903251628491_Inventory.resx">
+      <DependentUpon>201903251628491_Inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903251632075_DbSetInventory.resx">
+      <DependentUpon>201903251632075_DbSetInventory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

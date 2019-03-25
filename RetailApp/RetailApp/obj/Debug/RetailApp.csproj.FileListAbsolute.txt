@@ -110,3 +110,5 @@ C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\De
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.thing.resources
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.csproj.GenerateResource.cache
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.NamesToSchedule.resources
+C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.Inventory.resources
+C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.DbSetInventory.resources

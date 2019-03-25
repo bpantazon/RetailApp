@@ -35,14 +35,38 @@ namespace RetailApp.Controllers
             return View();
         }
 
-        // GET: Manager/Create
-        public ActionResult CreateManager()
+        public ActionResult AddProduct()
         {
-            Manager manager = new Manager();
+            Inventory inventory = new Inventory();
 
-            return View("CreateManager", manager);
+            return View(inventory);
         }
 
+        [HttpPost]
+        ActionResult AddProduct(Inventory inventory)
+        {
+            try
+            {
+                var newProduct = new Inventory
+                {
+                    BrandName = inventory.BrandName,
+                    ModelName = inventory.ModelName,
+                    SKU = inventory.SKU,
+                    Price = inventory.Price,
+                    Count = inventory.Count,
+                    Category = inventory.Category
+
+                };
+                db.Inventories.Add(newProduct);
+                db.SaveChanges();
+                return RedirectToAction("Inventory");
+            }
+            catch
+            {
+                return View();
+            }
+           
+        }
         public ActionResult CreateSchedule()
         {
             Schedule schedule = new Schedule();
@@ -52,8 +76,8 @@ namespace RetailApp.Controllers
         [HttpPost]
         public ActionResult CreateSchedule(Schedule schedule)
         {
-            //try
-            //{                
+            try
+            {
                 var scheduledEmployee = db.Employees.Where(e => e.FirstName == schedule.FirstName && e.LastName == schedule.LastName).SingleOrDefault();
                 var newSchedule = new Schedule
                 {
@@ -67,11 +91,19 @@ namespace RetailApp.Controllers
                 db.Schedules.Add(newSchedule);
                 db.SaveChanges();
                 return RedirectToAction("AllSchedules");
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Manager/Create
+        public ActionResult CreateManager()
+        {
+            Manager manager = new Manager();
+
+            return View("CreateManager", manager);
         }
         // POST: Manager/Create
         [HttpPost]
