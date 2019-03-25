@@ -168,7 +168,7 @@ namespace RetailApp.Controllers
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     if (model.UserRoles == "Manager")
                     {
-                        return RedirectToAction("Create", "Manager");
+                        return RedirectToAction("CreateManager", "Manager");
                     }
                     else if (model.UserRoles == "Employee")
                     {

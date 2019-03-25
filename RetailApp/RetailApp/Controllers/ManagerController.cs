@@ -30,7 +30,7 @@ namespace RetailApp.Controllers
         }
 
         // GET: Manager/Create
-        public ActionResult Create()
+        public ActionResult CreateManager()
         {
             Manager manager = new Manager();
 
@@ -39,7 +39,7 @@ namespace RetailApp.Controllers
 
         // POST: Manager/Create
         [HttpPost]
-        public ActionResult Create(Manager manager)
+        public ActionResult CreateManager(Manager manager)
         {
             try
             {

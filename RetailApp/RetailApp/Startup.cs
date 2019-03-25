@@ -40,6 +40,17 @@ namespace RetailApp
                 roleManager.Create(role);
 
             }
+            //Admin will POST, PUT, or DELETE from API data if company discontinues carrying certain items, prices update, or carries additional products
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+                {
+                    Name = "Admin"
+                };
+                roleManager.Create(role);
+
+            }
+
         }
     }
 }
