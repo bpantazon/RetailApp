@@ -181,21 +181,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903250039262_thing.cs" />
-    <Compile Include="Migrations\201903250039262_thing.Designer.cs">
-      <DependentUpon>201903250039262_thing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903251330005_NamesToSchedule.cs" />
-    <Compile Include="Migrations\201903251330005_NamesToSchedule.Designer.cs">
-      <DependentUpon>201903251330005_NamesToSchedule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903251628491_Inventory.cs" />
-    <Compile Include="Migrations\201903251628491_Inventory.Designer.cs">
-      <DependentUpon>201903251628491_Inventory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903251632075_DbSetInventory.cs" />
-    <Compile Include="Migrations\201903251632075_DbSetInventory.Designer.cs">
-      <DependentUpon>201903251632075_DbSetInventory.cs</DependentUpon>
+    <Compile Include="Migrations\201903252107320_thing2.cs" />
+    <Compile Include="Migrations\201903252107320_thing2.Designer.cs">
+      <DependentUpon>201903252107320_thing2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -283,6 +271,8 @@
     <Content Include="Views\Employee\Inventory.cshtml" />
     <Content Include="Views\Employee\AddInventory.cshtml" />
     <Content Include="Views\Employee\EditInventory.cshtml" />
+    <Content Include="Views\Employee\CreateAppointment.cshtml" />
+    <Content Include="Views\Employee\Appointments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,17 +291,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903250039262_thing.resx">
-      <DependentUpon>201903250039262_thing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903251330005_NamesToSchedule.resx">
-      <DependentUpon>201903251330005_NamesToSchedule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903251628491_Inventory.resx">
-      <DependentUpon>201903251628491_Inventory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903251632075_DbSetInventory.resx">
-      <DependentUpon>201903251632075_DbSetInventory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903252107320_thing2.resx">
+      <DependentUpon>201903252107320_thing2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -16,6 +16,7 @@ namespace RetailApp.Models
         public string Description { get; set; }
 
         [Display(Name = "Appointment Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy h:mm tt}")]
         public DateTime AppointmentDate { get; set; }
 
         [Display(Name = "Customer First Name")]
@@ -27,8 +28,7 @@ namespace RetailApp.Models
         [Display(Name = "Customer Contact Number")]
         public int PhoneNumber { get; set; }
 
-        public int CustomerId { get; set; }
-        [ForeignKey("CustomerId")]
-        public virtual Customer Customers { get; set; }
+        [Display(Name = "Customer Email")]
+        public string Email { get; set; }
     }
 }

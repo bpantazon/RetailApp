@@ -22,6 +22,10 @@ namespace RetailApp.Controllers
             var user = User.Identity.GetUserId();           
             var emp = db.Employees.Where(e => e.ApplicationUserId == user).Single();
             var employeeSchedules = db.Schedules.Where(s => s.EmployeeId == emp.EmployeeId).ToList();
+            int scheduledDays = employeeSchedules.Count;
+
+            ViewBag.daysScheduled = scheduledDays;
+
             return View(employeeSchedules);         
         }
 
@@ -44,6 +48,18 @@ namespace RetailApp.Controllers
             return View(inventory);
         }
         
+        public ActionResult CreateAppointment()
+        {
+            Appointment appointment = new Appointment();
+            return View("CreateAppointment", appointment);
+        }
+
+        public ActionResult Appointments()
+        {
+            var appointments = db.Appointments.ToList();
+            return View(appointments);
+        }
+
         // POST: Employee/Create
         [HttpPost]
         public ActionResult Create(Employee employee)
@@ -61,7 +77,14 @@ namespace RetailApp.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        public ActionResult CreateAppointment(Appointment appointment)
+        {
 
+            db.Appointments.Add(appointment);
+            db.SaveChanges();
+            return RedirectToAction("Appointments");
+        }
         public ActionResult AddInventory()
         {
             Inventory inventory = new Inventory();
