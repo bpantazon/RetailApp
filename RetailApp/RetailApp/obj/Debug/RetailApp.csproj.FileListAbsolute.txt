@@ -109,3 +109,4 @@ C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\De
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.pdb
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.thing.resources
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.csproj.GenerateResource.cache
+C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.NamesToSchedule.resources

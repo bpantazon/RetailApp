@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RetailApp.Models.Schedule>
+
+@{
+    ViewBag.Title = "EmployeeHome";
+}
+
+<h2>EmployeeHome</h2>
+@*<input type="button" value="Checkout" onclick="location.href='@Url.Action("Checkout", "Employee")'"/>*@
+<a href="#" class="btn btn-primary btn-default" onclick="location.href='@Url.Action("Checkout", "Employee")'">Checkout</a>
+<div>
+    <table class="table table-hover">
+        <tr class="info">
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ScheduleId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

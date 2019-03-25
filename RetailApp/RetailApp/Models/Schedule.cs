@@ -19,6 +19,14 @@ namespace RetailApp.Models
         [Display(Name = "End Time")]
         public DateTime EndTime { get; set; }
 
+
+        //Change to a dropdown of existing employees in a later iteration?
+        [Display(Name = "Employee First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Employee Last Name")]
+        public string LastName { get; set; }
+
         public int EmployeeId { get; set; }
         [ForeignKey("EmployeeId")]
         public virtual Employee Employees { get; set; }

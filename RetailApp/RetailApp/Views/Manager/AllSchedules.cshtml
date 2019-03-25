@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RetailApp.Models.Schedule>
+
+@{
+    ViewBag.Title = "AllSchedules";
+}
+
+<h2>All Schedules</h2>
+<div>  @Html.ActionLink("Manager Home", "ManagerHome")</div>
+<p>
+    @Html.ActionLink("Create New", "CreateSchedule")
+</p>
+<div class="table-responsive">
+    <table class="table table-responsive table-striped table-hover">
+        <thead>
+
+            <tr class="info">
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ScheduleId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ScheduleId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ScheduleId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
