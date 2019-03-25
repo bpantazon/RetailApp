@@ -22,12 +22,37 @@ namespace RetailApp.Controllers
             //default view = total sales
             return View();
         }
+        public ActionResult Inventory()
+        {
+            var allInventory = db.Inventories.ToList();
+            return View(allInventory);
+        }
         public ActionResult AllSchedules()
         {
             var allSchedules = db.Schedules.ToList();
             return View(allSchedules);
         }
 
+
+        public ActionResult EditInventory(int id)
+        {
+            var editedInventory = db.Inventories.Where(i => i.InventoryId == id).SingleOrDefault();
+            return View(editedInventory);
+        }
+
+        [HttpPost]
+        public ActionResult EditInventory(int id, Inventory inventory)
+        {
+            var editedInventory = db.Inventories.Where(i => i.InventoryId == id).SingleOrDefault();
+            editedInventory.BrandName = inventory.BrandName;
+            editedInventory.ModelName = inventory.ModelName;
+            editedInventory.SKU = inventory.SKU;
+            editedInventory.Price = inventory.Price;
+            editedInventory.Count = inventory.Count;
+            editedInventory.Category = inventory.Category;
+            db.SaveChanges();
+            return RedirectToAction("Inventory");
+        }
         // GET: Manager/Details/5
         public ActionResult Details(int id)
         {
@@ -35,7 +60,7 @@ namespace RetailApp.Controllers
             return View();
         }
 
-        public ActionResult AddProduct()
+        public ActionResult AddInventory()
         {
             Inventory inventory = new Inventory();
 
@@ -43,7 +68,7 @@ namespace RetailApp.Controllers
         }
 
         [HttpPost]
-        ActionResult AddProduct(Inventory inventory)
+        public ActionResult AddInventory(Inventory inventory)
         {
             try
             {
@@ -65,7 +90,7 @@ namespace RetailApp.Controllers
             {
                 return View();
             }
-           
+
         }
         public ActionResult CreateSchedule()
         {

@@ -277,6 +277,12 @@
     <Content Include="Views\Manager\CreateEmployee.cshtml" />
     <Content Include="Views\Employee\EmployeeHome.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Manager\AddInventory.cshtml" />
+    <Content Include="Views\Manager\Inventory.cshtml" />
+    <Content Include="Views\Manager\EditInventory.cshtml" />
+    <Content Include="Views\Employee\Inventory.cshtml" />
+    <Content Include="Views\Employee\AddInventory.cshtml" />
+    <Content Include="Views\Employee\EditInventory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

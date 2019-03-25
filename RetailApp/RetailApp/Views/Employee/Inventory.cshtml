@@ -1,0 +1,63 @@
+﻿@model IEnumerable<RetailApp.Models.Inventory>
+
+@{
+    ViewBag.Title = "Inventory";
+}
+
+<h2>Inventory</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddInventory")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SKU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SKU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrandName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditInventory", new { id=item.InventoryId }) |
+            @Html.ActionLink("Details", "InventoryDetails", new { id=item.InventoryId }) 
+         
+        </td>
+    </tr>
+}
+
+</table>
