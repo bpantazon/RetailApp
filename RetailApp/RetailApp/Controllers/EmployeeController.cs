@@ -61,7 +61,15 @@ namespace RetailApp.Controllers
         public ActionResult CreateCharge(int id)
         {
             Models.Inventory inventory = db.Inventories.Where(i => i.InventoryId == id).SingleOrDefault();
-            return View(inventory);
+            if (inventory.Count > 0)
+            {
+                return View(inventory);
+            }
+            else
+            {           
+                return RedirectToAction("Inventory");
+            }
+            
         }
         public ActionResult Appointments()
         {
