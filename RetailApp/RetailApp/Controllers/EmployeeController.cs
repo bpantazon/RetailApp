@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
+using MailKit.Net.Smtp;
+using MimeKit;
 using RetailApp.Models;
 using System;
 using System.Collections.Generic;
@@ -60,6 +62,15 @@ namespace RetailApp.Controllers
             return View(appointments);
         }
 
+        public ActionResult AddSale(string sku)
+        {
+            var user = User.Identity.GetUserId();
+            var emp = db.Employees.Where(e => e.ApplicationUserId == user).Single();
+            var soldProduct = db.StoreProducts.Where(p => p.SKU == sku).Single();
+
+            return View();
+        }
+
         // POST: Employee/Create
         [HttpPost]
         public ActionResult Create(Employee employee)
@@ -83,7 +94,29 @@ namespace RetailApp.Controllers
 
             db.Appointments.Add(appointment);
             db.SaveChanges();
-            return RedirectToAction("Appointments");
+            
+
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress($"{appointment.FirstName}", "retailManagerTest@gmail.com"));
+            message.To.Add(new MailboxAddress($"{appointment.FirstName}, {appointment.LastName}", "retailManagerTest@gmail.com"));
+            message.Subject = "Your Appointment";
+
+            message.Body = new TextPart("plain")
+            {
+                Text = $@"Hello,
+                This email is confirming your booked appointment. We'll see you soon!
+                From, The Retail Team"
+            };
+            using (var client = new SmtpClient())
+            {
+                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate("retailManagerTest", "Ret@il1!");
+                client.Send(message);
+                client.Disconnect(true);
+            }
+                return RedirectToAction("Appointments");
         }
         public ActionResult AddInventory()
         {
