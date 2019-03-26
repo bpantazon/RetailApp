@@ -58,10 +58,10 @@ namespace RetailApp.Controllers
             return View("CreateAppointment", appointment);
         }
 
-        public ActionResult CreateCharge()
+        public ActionResult CreateCharge(int id)
         {
-
-            return View();
+            Models.Inventory inventory = db.Inventories.Where(i => i.InventoryId == id).SingleOrDefault();
+            return View(inventory);
         }
         public ActionResult Appointments()
         {

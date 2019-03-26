@@ -6,4 +6,7 @@
 
 <h2>Order Status</h2>
 
-<p>Payment successful! Your confirmation id is @Model.ChargeId</p>
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Payment Successful!</strong> Your confirmation ID is <a href="#" class="alert-link">@Model.ChargeId</a>.
+</div>

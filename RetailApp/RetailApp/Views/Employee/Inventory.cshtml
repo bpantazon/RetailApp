@@ -53,6 +53,7 @@
             @Html.DisplayFor(modelItem => item.Category)
         </td>
         <td>
+            @Html.ActionLink("Sell", "CreateCharge", new { id = item.InventoryId }) |
             @Html.ActionLink("Edit", "EditInventory", new { id=item.InventoryId }) |
             @Html.ActionLink("Details", "InventoryDetails", new { id=item.InventoryId }) 
          
