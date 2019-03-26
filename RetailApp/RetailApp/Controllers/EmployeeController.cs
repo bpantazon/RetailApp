@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Stripe;
 
 namespace RetailApp.Controllers
 {
@@ -18,6 +19,7 @@ namespace RetailApp.Controllers
         {
             db = new ApplicationDbContext();
         }
+
         // GET: Employee
         public ActionResult EmployeeHome()
         {
@@ -56,6 +58,11 @@ namespace RetailApp.Controllers
             return View("CreateAppointment", appointment);
         }
 
+        public ActionResult CreateCharge()
+        {
+
+            return View();
+        }
         public ActionResult Appointments()
         {
             var appointments = db.Appointments.ToList();
@@ -69,6 +76,34 @@ namespace RetailApp.Controllers
             var soldProduct = db.StoreProducts.Where(p => p.SKU == sku).Single();
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateCharge(string stripeToken)
+        {
+            try
+            {
+                StripeConfiguration.SetApiKey("sk_test_BnYYnTyy5klJvy4gt3AyaMoI");
+
+                var options = new ChargeCreateOptions
+                {
+                    Amount = 2000,
+                    Currency = "usd",
+                    Description = "Charge for jenny.rosen@example.com",
+                    SourceId = stripeToken // obtained with Stripe.js,
+                };
+                var service = new ChargeService();
+                Charge charge = service.Create(options);
+
+                var model = new ChargeViewModel();
+
+                model.ChargeId = charge.Id;
+                return View("OrderStatus", model);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Employee/Create
@@ -103,9 +138,13 @@ namespace RetailApp.Controllers
 
             message.Body = new TextPart("plain")
             {
-                Text = $@"Hello,
-                This email is confirming your booked appointment. We'll see you soon!
-                From, The Retail Team"
+                Text = 
+                $@"Hello {appointment.FirstName},
+
+                This email is confirming your booked appointment on {appointment.AppointmentDate}. We'll see you soon!
+
+                From, 
+                The Retail Team"
             };
             using (var client = new SmtpClient())
             {
@@ -120,17 +159,17 @@ namespace RetailApp.Controllers
         }
         public ActionResult AddInventory()
         {
-            Inventory inventory = new Inventory();
+            Models.Inventory inventory = new Models.Inventory();
 
             return View(inventory);
         }
 
         [HttpPost]
-        public ActionResult AddInventory(Inventory inventory)
+        public ActionResult AddInventory(Models.Inventory inventory)
         {
             try
             {
-                var newProduct = new Inventory
+                var newProduct = new Models.Inventory
                 {
                     BrandName = inventory.BrandName,
                     ModelName = inventory.ModelName,
@@ -158,7 +197,7 @@ namespace RetailApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditInventory(int id, Inventory inventory)
+        public ActionResult EditInventory(int id, Models.Inventory inventory)
         {
             var editedInventory = db.Inventories.Where(i => i.InventoryId == id).SingleOrDefault();
             editedInventory.BrandName = inventory.BrandName;
@@ -170,7 +209,6 @@ namespace RetailApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Inventory");
         }
-
 
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
