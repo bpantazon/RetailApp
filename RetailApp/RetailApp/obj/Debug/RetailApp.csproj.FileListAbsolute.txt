@@ -216,3 +216,5 @@ C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\bin\St
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\bin\Stripe.net.xml
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\bin\System.Collections.Immutable.xml
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.ChargeVM.resources
+C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.FkInventoryIdOnSale.resources
+C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.VirtualSale.resources

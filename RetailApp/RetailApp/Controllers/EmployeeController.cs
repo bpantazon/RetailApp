@@ -79,25 +79,37 @@ namespace RetailApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateCharge(string stripeToken)
+        public ActionResult CreateCharge(string stripeToken, Models.Inventory inventory)
         {
+            var foundProduct = db.Inventories.Where(i => i.InventoryId == inventory.InventoryId).SingleOrDefault();
+            long cost = (long)Convert.ToDouble(foundProduct.Price);
             try
             {
                 StripeConfiguration.SetApiKey("sk_test_BnYYnTyy5klJvy4gt3AyaMoI");
 
                 var options = new ChargeCreateOptions
                 {
-                    Amount = 2000,
+                    Amount = cost * 100,
                     Currency = "usd",
-                    Description = "Charge for jenny.rosen@example.com",
+                    Description = "Charge for retailmanagertest@gmail.com",
                     SourceId = stripeToken // obtained with Stripe.js,
                 };
                 var service = new ChargeService();
                 Charge charge = service.Create(options);
-
-                var model = new ChargeViewModel();
-
+                var model = new ChargeViewModel();               
                 model.ChargeId = charge.Id;
+
+                foundProduct.Count--;
+
+                var currentUser = User.Identity.GetUserId();
+                var currentEmployee = db.Employees.Where(e => e.ApplicationUserId == currentUser).SingleOrDefault();
+                var newSale = new Sale
+                {
+                    EmployeeId = currentEmployee.EmployeeId,
+                    InventoryId = foundProduct.InventoryId
+                };
+                db.Sales.Add(newSale);
+                db.SaveChanges();
                 return View("OrderStatus", model);
             }
             catch
@@ -105,6 +117,8 @@ namespace RetailApp.Controllers
                 return View();
             }
         }
+
+
 
         // POST: Employee/Create
         [HttpPost]

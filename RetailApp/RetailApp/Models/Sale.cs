@@ -12,11 +12,11 @@ namespace RetailApp.Models
         [Key, Column(Order = 0)]
         public int EmployeeId { get; set; }
         [ForeignKey("EmployeeId")]
-        public Employee Employees { get; set; }
+        public virtual Employee Employees { get; set; }
 
         [Key, Column(Order = 1)]
-        public int ProductId { get; set; }
-        [ForeignKey("ProductId")]
-        public StoreProduct Products { get; set; }
+        public int InventoryId { get; set; }
+        [ForeignKey("InventoryId")]
+        public virtual Inventory Inventories { get; set; }
     }
 }
