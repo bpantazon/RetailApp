@@ -11,6 +11,38 @@ namespace RetailApp.Controllers
     public class ManagerController : Controller
     {
         ApplicationDbContext db;
+        //public class SalesChart
+        //{
+        //    public object[] label { get; set; }
+        //    public object[] filling { get; set; }
+        //}
+        //public JsonResult SalesChart(int id)
+        //{
+        //    var allProducts = db.Inventories.ToList();
+        //    //need to get a count of how many different categories are in the db
+        //    List<string> categories = new List<string>();
+
+        //    var salesChart = new SalesChart();
+        //    salesChart.label = new object[] { "Product", "Sales" };
+        //    salesChart.filling = new object[]
+        //    {
+            
+        //    };
+            
+        //}
+
+        //public JsonResult SalesChart()
+        //{
+        //    var sales = db.Sales.ToList();
+        //    int salesCount = sales.Count;
+        //    List<string> inventoryNames = new List<string>();
+        //    var inventoryList = db.Inventories.ToList();
+        //    foreach (var item in inventoryList)
+        //    {
+        //        inventoryNames.Add(item.ModelName);
+        //    }
+
+        //}
 
         public ManagerController()
         {
@@ -20,6 +52,9 @@ namespace RetailApp.Controllers
         public ActionResult ManagerHome()
         {
             //default view = total sales
+            var allSales = db.Sales.ToList();
+
+            //var products = db.Inventories.Where(i => i.InventoryId == allSales.)
             return View();
         }
         public ActionResult Inventory()

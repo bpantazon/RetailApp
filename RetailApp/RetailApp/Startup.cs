@@ -22,6 +22,28 @@ namespace RetailApp
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var role = new IdentityRole
+                {
+                    Name = "Admin"
+                };
+                roleManager.Create(role);
+
+                var user = new ApplicationUser();
+                user.UserName = "admin";
+                user.Email = "admin@gmail.com";
+
+                string userPassword = "@dmin1";
+
+                var checkUser = UserManager.Create(user, userPassword);
+
+                if (checkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user.Id, "Admin");
+                }
+            }
+
             if (!roleManager.RoleExists("Employee"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole
