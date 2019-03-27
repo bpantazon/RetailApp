@@ -230,6 +230,7 @@
     <Compile Include="Models\ScheduleVM.cs" />
     <Compile Include="Models\StoreProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Catalog.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +307,7 @@
     <Content Include="Views\Employee\Appointments.cshtml" />
     <Content Include="Views\Employee\CreateCharge.cshtml" />
     <Content Include="Views\Employee\OrderStatus.cshtml" />
+    <Content Include="Views\Employee\Catalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -34,15 +34,15 @@ namespace RetailApp
 
             }
 
-            if (!context.Users.Any(u => u.UserName == "admin"))
-            {
-                var store = new UserStore<ApplicationUser>(context);
-                var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "admin1", Email = "admin1@gmail.com" };
+            //if (!context.Users.Any(u => u.UserName == "admin"))
+            //{
+            //    var store = new UserStore<ApplicationUser>(context);
+            //    var manager = new UserManager<ApplicationUser>(store);
+            //    var user = new ApplicationUser { UserName = "admin1", Email = "admin1@gmail.com" };
 
-                manager.Create(user, "P@ssword1");
-                manager.AddToRole(user.Id, "Admin");
-            }
+            //    manager.Create(user, "P@ssword1");
+            //    manager.AddToRole(user.Id, "Admin");
+            //}
 
             if (!roleManager.RoleExists("Employee"))
             {
