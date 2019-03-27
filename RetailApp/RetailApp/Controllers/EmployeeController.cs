@@ -56,8 +56,6 @@ namespace RetailApp.Controllers
                 var result = response.Content.ReadAsStringAsync().Result;
                 catalogs = JsonConvert.DeserializeObject<List<Catalog>>(result);
 
-
-
                 //string brandName;
                 //string modelName;
                 //decimal price;
@@ -92,6 +90,8 @@ namespace RetailApp.Controllers
             }
                 return View(catalogItems);
         }
+
+
         // GET: Employee/Create
         public ActionResult Create()
         {
