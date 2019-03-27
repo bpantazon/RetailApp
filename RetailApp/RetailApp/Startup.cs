@@ -3,6 +3,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
 using RetailApp.Models;
+using System;
+using System.Linq;
 
 [assembly: OwinStartupAttribute(typeof(RetailApp.Startup))]
 namespace RetailApp
@@ -30,23 +32,21 @@ namespace RetailApp
                 };
                 roleManager.Create(role);
 
-                var user = new ApplicationUser();
-                user.UserName = "admin";
-                user.Email = "admin@gmail.com";
+            }
 
-                string userPassword = "@dmin1";
+            if (!context.Users.Any(u => u.UserName == "admin"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "admin1", Email = "admin1@gmail.com" };
 
-                var checkUser = UserManager.Create(user, userPassword);
-
-                if (checkUser.Succeeded)
-                {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
-                }
+                manager.Create(user, "P@ssword1");
+                manager.AddToRole(user.Id, "Admin");
             }
 
             if (!roleManager.RoleExists("Employee"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+                var role = new IdentityRole
                 {
                     Name = "Employee"
                 };
@@ -55,7 +55,7 @@ namespace RetailApp
             }
             if (!roleManager.RoleExists("Manager"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+                var role = new IdentityRole
                 {
                     Name = "Manager"
                 };
