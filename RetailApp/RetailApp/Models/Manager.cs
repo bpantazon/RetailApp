@@ -18,10 +18,6 @@ namespace RetailApp.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        //public int ScheduleId { get; set; }
-        //[ForeignKey("ScheduleId")]
-        //public virtual Schedule Schedules { get; set; }
-
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

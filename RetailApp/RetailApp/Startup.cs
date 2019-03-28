@@ -34,7 +34,7 @@ namespace RetailApp
 
             }
 
-            //if (!context.Users.Any(u => u.UserName == "admin"))
+            //if (!context.Users.Any(u => u.UserName == "admin1"))
             //{
             //    var store = new UserStore<ApplicationUser>(context);
             //    var manager = new UserManager<ApplicationUser>(store);
@@ -65,7 +65,7 @@ namespace RetailApp
             //Admin will POST, PUT, or DELETE from API data if company discontinues carrying certain items, prices update, or carries additional products
             if (!roleManager.RoleExists("Admin"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+                var role = new IdentityRole
                 {
                     Name = "Admin"
                 };

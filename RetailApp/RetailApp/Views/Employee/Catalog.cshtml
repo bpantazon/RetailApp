@@ -4,7 +4,7 @@
     ViewBag.Title = "Catalog";
 }
 
-<h2>Catalog</h2>
+<h2>Company Catalog</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -39,7 +39,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr>     
         <td>
             @Html.DisplayFor(modelItem => item.BrandName)
         </td>

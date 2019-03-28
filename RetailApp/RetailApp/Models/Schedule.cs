@@ -16,7 +16,7 @@ namespace RetailApp.Models
         [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
 
-        [Display(Name = "End Time")]
+          [Display(Name = "End Time")]
         public DateTime EndTime { get; set; }
 
 
