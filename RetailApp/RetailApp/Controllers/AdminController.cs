@@ -15,6 +15,13 @@ namespace RetailApp.Controllers
 {
     public class AdminController : Controller
     {
+        ApplicationDbContext db;
+
+        public AdminController()
+        {
+            db = new ApplicationDbContext();
+        }
+
         // GET: Admin
         public ActionResult AdminHome()
         {
@@ -111,12 +118,32 @@ namespace RetailApp.Controllers
         // GET: Admin/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            try
+            {
+                string idString = id.ToString();
+                Catalog foundCatalog = new Catalog();
+                using (var client = new HttpClient(new HttpClientHandler
+                { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                {
+                    client.BaseAddress = new Uri("http://localhost:54150/api/Product/" + idString);
+                    HttpResponseMessage response = client.GetAsync("").Result;
+                    response.EnsureSuccessStatusCode();
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    foundCatalog = JsonConvert.DeserializeObject<Catalog>(result);
+
+                    return View(foundCatalog);
+                }
+            }
+            catch
+            {
+                return View();
+            }
+            
         }
 
         // POST: Admin/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Catalog foundCatalog)
         {
             try
             {
@@ -133,23 +160,51 @@ namespace RetailApp.Controllers
         // GET: Admin/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Admin/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
             try
             {
-                // TODO: Add delete logic here
+                string idString = id.ToString();
+                Catalog foundCatalog = new Catalog();
+                using (var client = new HttpClient(new HttpClientHandler
+                { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                {
+                    client.BaseAddress = new Uri("http://localhost:54150/api/Product/" + idString);
+                    HttpResponseMessage response = client.GetAsync("").Result;
+                    response.EnsureSuccessStatusCode();
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    foundCatalog = JsonConvert.DeserializeObject<Catalog>(result);
 
-                return RedirectToAction("Index");
+                    return View(foundCatalog);
+                }
             }
             catch
             {
                 return View();
             }
+        }
+
+        // POST: Admin/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, Catalog foundCatalog)
+        {            
+            // TODO: Add delete logic here
+            try
+            {
+                string idString = id.ToString();
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:54150/api/Product/" + idString);
+                    var response = client.DeleteAsync("").Result;
+                    response.EnsureSuccessStatusCode();
+                }
+                    return RedirectToAction("AdminHome");
+            }
+                catch
+                {
+                    return View();
+                }
+           
+            
+
         }
     }
 }

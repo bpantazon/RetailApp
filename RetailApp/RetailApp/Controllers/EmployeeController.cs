@@ -208,7 +208,7 @@ namespace RetailApp.Controllers
 
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress($"{appointment.FirstName}", "retailManagerTest@gmail.com"));
-            message.To.Add(new MailboxAddress($"{appointment.FirstName}, {appointment.LastName}", "retailManagerTest@gmail.com"));
+            message.To.Add(new MailboxAddress($"{appointment.FirstName}, {appointment.LastName}", "retailManagerTest@gmail.com")); //sending email to the test address for testing purposes
             message.Subject = "Your Appointment";
 
             message.Body = new TextPart("plain")
@@ -219,6 +219,7 @@ namespace RetailApp.Controllers
                 This email is confirming your booked appointment on {appointment.AppointmentDate}. We'll see you soon!
 
                 From, 
+
                 The Retail Team"
             };
             using (var client = new SmtpClient())
