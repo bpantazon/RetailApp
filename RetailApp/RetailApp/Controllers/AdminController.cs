@@ -7,6 +7,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using System.Text;
+using System.Net.Http.Headers;
 
 namespace RetailApp.Controllers
 {
@@ -54,24 +57,50 @@ namespace RetailApp.Controllers
         // GET: Admin/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            
+            try
+            {
+                string idString = id.ToString();
+                Catalog foundCatalog = new Catalog();
+                using (var client = new HttpClient(new HttpClientHandler
+                { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                {
+                    client.BaseAddress = new Uri("http://localhost:54150/api/Product/" + idString);
+                    HttpResponseMessage response = client.GetAsync("").Result;
+                    response.EnsureSuccessStatusCode();
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    foundCatalog = JsonConvert.DeserializeObject<Catalog>(result);
+
+                    return View(foundCatalog);
+                }
+            }
+            catch
+            {
+                return View();
+            }
+            
         }
 
         // GET: Admin/Create
         public ActionResult Create()
         {
-            return View();
+            Catalog catalog = new Catalog();
+            return View(catalog);
         }
 
         // POST: Admin/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Catalog catalog)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:54150/api/Product");
+                    var response = client.PostAsync("", new StringContent(new JavaScriptSerializer().Serialize(catalog), Encoding.UTF8, "application/json")).Result;
+                    response.EnsureSuccessStatusCode();
+                }
+                return RedirectToAction("AdminHome");
             }
             catch
             {

@@ -10,10 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table table-hover table-responsive table-bordered table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Product_Id)
-        </th>
+    <tr class="info">
         <th>
             @Html.DisplayNameFor(model => model.BrandName)
         </th>
@@ -43,10 +40,9 @@
 
 @foreach (var item in Model) {
     <tr>
+      
         <td>
-            @Html.DisplayFor(modelItem => item.Product_Id)
-        </td>
-        <td>
+            @Html.HiddenFor(modelItem => item.Product_Id)
             @Html.DisplayFor(modelItem => item.BrandName)
         </td>
         <td>

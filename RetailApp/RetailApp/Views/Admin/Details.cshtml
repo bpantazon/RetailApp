@@ -1,0 +1,87 @@
+﻿@model RetailApp.Models.Catalog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Catalog</h4>
+    @Html.HiddenFor(model => model.Product_Id)
+    <hr />
+    <dl class="dl-horizontal">       
+        <dd>
+            @Html.DisplayFor(model => model.Product_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SKU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SKU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Feature1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feature1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Feature2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feature2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Product_Id }) |
+    @Html.ActionLink("Back to Home", "AdminHome")
+</p>
