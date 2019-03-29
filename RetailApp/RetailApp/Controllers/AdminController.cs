@@ -63,8 +63,7 @@ namespace RetailApp.Controllers
 
         // GET: Admin/Details/5
         public ActionResult Details(int id)
-        {
-            
+        {           
             try
             {
                 string idString = id.ToString();
@@ -84,8 +83,7 @@ namespace RetailApp.Controllers
             catch
             {
                 return View();
-            }
-            
+            }           
         }
 
         // GET: Admin/Create
@@ -111,7 +109,7 @@ namespace RetailApp.Controllers
             }
             catch
             {
-                return View();
+                return View(catalog);
             }
         }
 
@@ -138,24 +136,30 @@ namespace RetailApp.Controllers
             {
                 return View();
             }
-            
         }
 
         // POST: Admin/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, Catalog foundCatalog)
         {
+            // TODO: Add update logic here
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                string idString = id.ToString();
+                
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:54150/api/Product/" + idString);
+                    var response = client.PutAsync("", new StringContent(new JavaScriptSerializer().Serialize(foundCatalog), Encoding.UTF8, "application/json")).Result;
+                    response.EnsureSuccessStatusCode();
+                }
+                return RedirectToAction("AdminHome");
             }
             catch
             {
                 return View();
             }
-        }
+}
 
         // GET: Admin/Delete/5
         public ActionResult Delete(int id)
@@ -185,7 +189,7 @@ namespace RetailApp.Controllers
         // POST: Admin/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, Catalog foundCatalog)
-        {            
+        {
             // TODO: Add delete logic here
             try
             {
@@ -196,15 +200,12 @@ namespace RetailApp.Controllers
                     var response = client.DeleteAsync("").Result;
                     response.EnsureSuccessStatusCode();
                 }
-                    return RedirectToAction("AdminHome");
+                return RedirectToAction("AdminHome");
             }
-                catch
-                {
-                    return View();
-                }
-           
-            
-
+            catch
+            {
+                return View();
+            }
         }
     }
 }

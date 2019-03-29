@@ -5,13 +5,14 @@
 }
 
 <h2>Delete</h2>
-@Html.HiddenFor(model => model.Product_Id)
+
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Catalog</h4>
+    <h4>Catalog Item</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.HiddenFor(model => model.Product_Id)
             @Html.DisplayNameFor(model => model.BrandName)
         </dt>
 
@@ -82,7 +83,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @*<a href="" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Admin")'">Delete</a>*@
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
