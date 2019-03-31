@@ -37,10 +37,28 @@ namespace RetailApp.Controllers
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public ActionResult InventoryDetails(int id)
         {
-         
-            return View();
+            try
+            {
+                string idString = id.ToString();
+                Catalog foundCatalog = new Catalog();
+                using (var client = new HttpClient(new HttpClientHandler
+                { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                {
+                    client.BaseAddress = new Uri("http://localhost:54150/api/Product/" + idString);
+                    HttpResponseMessage response = client.GetAsync("").Result;
+                    response.EnsureSuccessStatusCode();
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    foundCatalog = JsonConvert.DeserializeObject<Catalog>(result);
+
+                    return View(foundCatalog);
+                }
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public ActionResult Catalog()
@@ -56,14 +74,6 @@ namespace RetailApp.Controllers
                 var result = response.Content.ReadAsStringAsync().Result;
                 catalogs = JsonConvert.DeserializeObject<List<Catalog>>(result);
 
-                //string brandName;
-                //string modelName;
-                //decimal price;
-                //string sku;
-                //string category;
-                //string feature1;
-                //string feature2;
-                //string summary;
                 foreach (var item in catalogs)
                 {
                     Catalog newCatalog = new Catalog();
@@ -76,16 +86,7 @@ namespace RetailApp.Controllers
                     newCatalog.Feature1 = item.Feature1;
                     newCatalog.Feature2 = item.Feature2;
                     newCatalog.Summary = item.Summary;
-                    catalogItems.Add(newCatalog);
-                    //ViewBag.Brand = brandName;
-                    //ViewBag.Model = modelName;
-                    //ViewBag.Price = price;
-                    //ViewBag.Sku = sku;
-                    //ViewBag.Category = category;
-                    //ViewBag.Feature1 = feature1;
-                    //ViewBag.Feature2 = feature2;
-                    //ViewBag.Summary = summary;
-
+                    catalogItems.Add(newCatalog);                  
                 }
             }
                 return View(catalogItems);

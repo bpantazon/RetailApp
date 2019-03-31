@@ -1,0 +1,37 @@
+﻿@model RetailApp.Models.Catalog
+
+@{
+    ViewBag.Title = "InventoryDetails";
+}
+
+<h2>Inventory Details</h2>
+@Html.HiddenFor(model => model.Product_Id)
+
+    <h4>Catalog Details</h4>
+    <hr />
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Information</h3>
+    </div>
+    <div class="panel-body">
+        <strong>@Html.DisplayNameFor(model => model.BrandName)</strong> :  @Html.DisplayFor(model => model.BrandName)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.ModelName)</strong> : @Html.DisplayFor(model => model.ModelName)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.Price)</strong> : @Html.DisplayFor(model => model.Price)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.SKU)</strong> : @Html.DisplayFor(model => model.SKU)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.Category)</strong> : @Html.DisplayFor(model => model.Category)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.Feature1)</strong> : @Html.DisplayFor(model => model.Feature1)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.Feature2)</strong> : @Html.DisplayFor(model => model.Feature2)
+        <br />
+        <strong>@Html.DisplayNameFor(model => model.Summary)</strong> : @Html.DisplayFor(model => model.Summary)
+    </div>
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "Inventory")
+</p>
