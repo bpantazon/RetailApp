@@ -161,16 +161,28 @@ namespace RetailApp.Controllers
                 model.ChargeId = charge.Id;
 
                 foundProduct.Count--;
-
+                foundProduct.Sold++;
+                
                 var currentUser = User.Identity.GetUserId();
                 var currentEmployee = db.Employees.Where(e => e.ApplicationUserId == currentUser).SingleOrDefault();
-                var newSale = new Sale
+                var checkSale = db.EmployeeSales.Where(s => s.Model == foundProduct.ModelName && s.EmployeeId == currentEmployee.EmployeeId).SingleOrDefault();
+                if (checkSale == null)
                 {
-                    EmployeeId = currentEmployee.EmployeeId,
-                    InventoryId = foundProduct.InventoryId
-                };
-                db.Sales.Add(newSale);
-                db.SaveChanges();
+                    var newEmpSale = new EmployeeSale
+                    {
+                        EmployeeId = currentEmployee.EmployeeId,
+                        Model = foundProduct.ModelName,
+                        NumberSold = 1
+                    };
+                    db.EmployeeSales.Add(newEmpSale);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    checkSale.NumberSold++;
+                    db.SaveChanges();
+                }
+              
                 return View("OrderStatus", model);
             }
             catch
@@ -178,8 +190,6 @@ namespace RetailApp.Controllers
                 return View();
             }
         }
-
-
 
         // POST: Employee/Create
         [HttpPost]
@@ -216,7 +226,7 @@ namespace RetailApp.Controllers
                 Text = 
                 $@"Hello {appointment.FirstName},
 
-                This email is confirming your booked appointment on {appointment.AppointmentDate}. We'll see you soon!
+                This email is confirming your appointment on {appointment.AppointmentDate}. We'll see you soon!
 
                 From, 
 
@@ -252,8 +262,8 @@ namespace RetailApp.Controllers
                     SKU = inventory.SKU,
                     Price = inventory.Price,
                     Count = inventory.Count,
-                    Category = inventory.Category
-
+                    Category = inventory.Category,
+                    Sold = 0
                 };
                 db.Inventories.Add(newProduct);
                 db.SaveChanges();

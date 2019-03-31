@@ -1,4 +1,4 @@
-﻿@model RetailApp.Models.Sale
+﻿@*@model RetailApp.Models.Sale*@
 
 @{
     ViewBag.Title = "ManagerHome";
@@ -6,9 +6,9 @@
 
 <h2>Manager Home</h2>
 <div>
-    <div>  @Html.ActionLink("Schedules", "AlLSchedules")</div>
+    <div>  @Html.ActionLink("Schedules", "AllSchedules")</div>
 </div>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+@*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
@@ -21,9 +21,8 @@
             ['SamsungS10', 10],
             ['AirPods', 2],
             ['ToughArmor', 7],
-            ['ScreenProtector', 7]
-        ]);
-
+            ['ScreenProtector', 7]]);
+   
         var options = {
             title: 'Overall Sales'
         };
@@ -32,8 +31,52 @@
 
         chart.draw(data, options);
     }
+    //google.charts.setOnLoadCallback(drawChart);
+</script>*@
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: '@Url.Action("VisualizeData", "Manager")',
+            success: function (result) {
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(function () {
+                    drawChart(result);
+                });
+            }
+        });
+    });
+    function drawChart(result) {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Model');
+        data.addColumn('number', 'Sold');
+        var dataArray = [];
+        $.each(result, function (i, obj) {
+            dataArray.push([obj.ModelName, obj.Sold]);
+        });
+        data.addRows(dataArray);
+
+        var columnChartOptions = {
+            title: "Overall Sales",
+            width: 1000,
+            height: 400,
+            bar: {groupWidth: "20%"}
+        }
+
+        var columnChart = new google.visualization.PieChart(document.getElementById('columnchart_div'));
+
+        columnChart.draw(data, columnChartOptions);
+    }
 </script>
 
 <body>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
+    <div align="center" id="columnchart_div"></div>
 </body>

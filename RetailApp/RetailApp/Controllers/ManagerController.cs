@@ -5,57 +5,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace RetailApp.Controllers
 {
     public class ManagerController : Controller
     {
         ApplicationDbContext db;
-        //public class SalesChart
-        //{
-        //    public object[] label { get; set; }
-        //    public object[] filling { get; set; }
-        //}
-        //public JsonResult SalesChart(int id)
-        //{
-        //    var allProducts = db.Inventories.ToList();
-        //    //need to get a count of how many different categories are in the db
-        //    List<string> categories = new List<string>();
-
-        //    var salesChart = new SalesChart();
-        //    salesChart.label = new object[] { "Product", "Sales" };
-        //    salesChart.filling = new object[]
-        //    {
-            
-        //    };
-            
-        //}
-
-        //public JsonResult SalesChart()
-        //{
-        //    var sales = db.Sales.ToList();
-        //    int salesCount = sales.Count;
-        //    List<string> inventoryNames = new List<string>();
-        //    var inventoryList = db.Inventories.ToList();
-        //    foreach (var item in inventoryList)
-        //    {
-        //        inventoryNames.Add(item.ModelName);
-        //    }
-
-        //}
+       
 
         public ManagerController()
         {
             db = new ApplicationDbContext();
         }
-        // GET: Manager
         public ActionResult ManagerHome()
         {
-            //default view = total sales
-            var allSales = db.Sales.ToList();
-
-            //var products = db.Inventories.Where(i => i.InventoryId == allSales.)
             return View();
+        }
+        // GET: Manager
+        public ActionResult VisualizeData()
+        {         
+            return Json(InventoryResults(), JsonRequestBehavior.AllowGet);                   
+        }
+
+    
+        public List<Inventory> InventoryResults()
+        {
+            List<Inventory> salesResults = new List<Inventory>();
+
+            salesResults = db.Inventories.ToList();
+
+            return salesResults;
         }
         public ActionResult Inventory()
         {
@@ -67,7 +47,6 @@ namespace RetailApp.Controllers
             var allSchedules = db.Schedules.ToList();
             return View(allSchedules);
         }
-
 
         public ActionResult EditInventory(int id)
         {

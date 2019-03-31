@@ -216,12 +216,29 @@
     <Compile Include="Migrations\201903262005233_VirtualSale.Designer.cs">
       <DependentUpon>201903262005233_VirtualSale.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903311907339_EmpSale.cs" />
+    <Compile Include="Migrations\201903311907339_EmpSale.Designer.cs">
+      <DependentUpon>201903311907339_EmpSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903311910229_DbSetEmpSale.cs" />
+    <Compile Include="Migrations\201903311910229_DbSetEmpSale.Designer.cs">
+      <DependentUpon>201903311910229_DbSetEmpSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903312031553_AmountForCharge.cs" />
+    <Compile Include="Migrations\201903312031553_AmountForCharge.Designer.cs">
+      <DependentUpon>201903312031553_AmountForCharge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903312039397_RemoveAmountFromCharge.cs" />
+    <Compile Include="Migrations\201903312039397_RemoveAmountFromCharge.Designer.cs">
+      <DependentUpon>201903312039397_RemoveAmountFromCharge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\ChargeViewModel.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeSale.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Manager.cs" />
@@ -344,6 +361,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903262005233_VirtualSale.resx">
       <DependentUpon>201903262005233_VirtualSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903311907339_EmpSale.resx">
+      <DependentUpon>201903311907339_EmpSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903311910229_DbSetEmpSale.resx">
+      <DependentUpon>201903311910229_DbSetEmpSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903312031553_AmountForCharge.resx">
+      <DependentUpon>201903312031553_AmountForCharge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903312039397_RemoveAmountFromCharge.resx">
+      <DependentUpon>201903312039397_RemoveAmountFromCharge.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

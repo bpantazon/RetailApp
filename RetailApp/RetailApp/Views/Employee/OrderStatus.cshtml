@@ -8,9 +8,13 @@
 
 <div class="alert alert-success">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    @DateTime.Today
+    @DateTime.Now
     <br />
-    <strong>Payment Successful!</strong> Your confirmation ID is <a href="#" class="alert-link">@Model.ChargeId</a>.
+    <br />
+    <strong>Payment Successful!</strong> Your confirmation ID is <strong>@Model.ChargeId</strong>.
+</div>
+<div>
+    <a href="#" class="btn btn-success" onclick="location.href='@Url.Action("Inventory", "Employee")'">Return to Inventory</a>
 </div>
 
 @*<head>

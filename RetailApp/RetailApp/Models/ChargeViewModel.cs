@@ -9,5 +9,6 @@ namespace RetailApp.Models
     public class ChargeViewModel
     {
         public string ChargeId { get; set; }
+     
     }
 }
