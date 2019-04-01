@@ -1,13 +1,9 @@
-﻿@*@model RetailApp.Models.Sale*@
-
+﻿
 @{
-    ViewBag.Title = "ManagerHome";
+    ViewBag.Title = "MySales";
 }
 
-<h2>Manager Home</h2>
-<div>
-    <div>  @Html.ActionLink("Schedules", "AllSchedules")</div>
-</div>
+<h2>MySales</h2>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -18,7 +14,7 @@
             type: "POST",
             dataType: "json",
             contentType: "application/json",
-            url: '@Url.Action("VisualizeData", "Manager")',
+            url: '@Url.Action("VisualizeData", "Employee")',
             success: function (result) {
                 google.charts.load('current', {
                     'packages': ['corechart']
@@ -35,7 +31,7 @@
         data.addColumn('number', 'Sold');
         var dataArray = [];
         $.each(result, function (i, obj) {
-            dataArray.push([obj.ModelName, obj.Sold]);
+            dataArray.push([obj.Model, obj.NumberSold]);
         });
         data.addRows(dataArray);
 

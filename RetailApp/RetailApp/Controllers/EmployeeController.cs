@@ -36,6 +36,28 @@ namespace RetailApp.Controllers
             return View(employeeSchedules);         
         }
 
+        public ActionResult MySales()
+        {
+            return View();
+        }
+
+        public ActionResult VisualizeData()
+        {
+            return Json(EmployeeResults(), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public List<EmployeeSale> EmployeeResults()
+        {
+            List<EmployeeSale> employeeSales = new List<EmployeeSale>();
+            var user = User.Identity.GetUserId();
+            var currentEmployee = db.Employees.Where(e => e.ApplicationUserId == user).SingleOrDefault();
+            employeeSales = db.EmployeeSales.Where(s => s.EmployeeId == currentEmployee.EmployeeId).ToList();
+
+            return employeeSales;
+        }
+
+
         // GET: Employee/Details/5
         public ActionResult InventoryDetails(int id)
         {
