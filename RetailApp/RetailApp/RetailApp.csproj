@@ -349,6 +349,9 @@
     <Content Include="Views\Employee\AppointmentDetails.cshtml" />
     <Content Include="Views\Employee\DeleteAppointment.cshtml" />
     <Content Include="Views\Catalog\Catalog.cshtml" />
+    <Content Include="Views\Manager\EditSchedule.cshtml" />
+    <Content Include="Views\Manager\ScheduleDetails.cshtml" />
+    <Content Include="Views\Manager\DeleteSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

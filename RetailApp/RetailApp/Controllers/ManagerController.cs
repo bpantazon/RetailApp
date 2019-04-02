@@ -20,24 +20,38 @@ namespace RetailApp.Controllers
 
         public ActionResult ManagerHome()
         {
-            IList<Employee> employeeList = new List<Employee>();
-            foreach (var emp in db.Employees)
+            try
             {
-                employeeList.Add(emp);
+                IList<Employee> employeeList = new List<Employee>();
+                foreach (var emp in db.Employees)
+                {
+                    employeeList.Add(emp);
+                }
+                return View(employeeList);
             }
-            return View(employeeList);
+            catch
+            {
+                return View();
+            }
         }
     
         public ActionResult EmployeeSales(Employee employee)
         {
-            int id = employee.EmployeeId;
-            SalesForEmployee(id);
+            try
+            {
+                int id = employee.EmployeeId;
+                SalesForEmployee(id);
 
-            return View(employee);
+                return View(employee);
+            }
+            catch
+            {
+                return View();
+            }
         }
         public List<EmployeeSale> SalesForEmployee(int id)
         {
-            //List<EmployeeSale> employeeSales = new List<EmployeeSale>();
+            
             var employee = db.Employees.Where(e => e.EmployeeId == id).SingleOrDefault();
             var salesForEmp = db.EmployeeSales.Where(s => s.EmployeeId == employee.EmployeeId).ToList();
             return salesForEmp;
@@ -68,8 +82,15 @@ namespace RetailApp.Controllers
         }
         public ActionResult AllSchedules()
         {
-            var allSchedules = db.Schedules.ToList();
-            return View(allSchedules);
+            try
+            {
+                var allSchedules = db.Schedules.ToList();
+                return View(allSchedules);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public ActionResult EditInventory(int id)
@@ -81,15 +102,22 @@ namespace RetailApp.Controllers
         [HttpPost]
         public ActionResult EditInventory(int id, Inventory inventory)
         {
-            var editedInventory = db.Inventories.Where(i => i.InventoryId == id).SingleOrDefault();
-            editedInventory.BrandName = inventory.BrandName;
-            editedInventory.ModelName = inventory.ModelName;
-            editedInventory.SKU = inventory.SKU;
-            editedInventory.Price = inventory.Price;
-            editedInventory.Count = inventory.Count;
-            editedInventory.Category = inventory.Category;
-            db.SaveChanges();
-            return RedirectToAction("Inventory");
+            try
+            {
+                var editedInventory = db.Inventories.Where(i => i.InventoryId == id).SingleOrDefault();
+                editedInventory.BrandName = inventory.BrandName;
+                editedInventory.ModelName = inventory.ModelName;
+                editedInventory.SKU = inventory.SKU;
+                editedInventory.Price = inventory.Price;
+                editedInventory.Count = inventory.Count;
+                editedInventory.Category = inventory.Category;
+                db.SaveChanges();
+                return RedirectToAction("Inventory");
+            }
+            catch
+            {
+                return View();
+            }
         }
         // GET: Manager/Details/5
         public ActionResult Details(int id)
@@ -160,7 +188,57 @@ namespace RetailApp.Controllers
                 return View();
             }
         }
+        public ActionResult EditSchedule(int id)
+        {
+            var schedule = db.Schedules.Where(s => s.ScheduleId == id).SingleOrDefault();
+            return View(schedule);
+        }
+        [HttpPost]
+        public ActionResult EditSchedule(int id, Schedule schedule)
+        {
+            try
+            {
+                var editedSchedule = db.Schedules.Where(e => e.ScheduleId == id).SingleOrDefault();
+                editedSchedule.FirstName = schedule.FirstName;
+                editedSchedule.LastName = schedule.LastName;
+                editedSchedule.StartTime = schedule.StartTime;
+                editedSchedule.EndTime = schedule.EndTime;
+                db.SaveChanges();
+                return RedirectToAction("AllSchedules");
+            }
+            catch
+            {
+                return View();
+            }
+           
+        }
 
+        public ActionResult ScheduleDetails(int id)
+        {
+            var schedule = db.Schedules.Where(s => s.ScheduleId == id).SingleOrDefault();
+            return View(schedule);
+        }
+
+        public ActionResult DeleteSchedule(int id)
+        {
+            var schedule = db.Schedules.Where(s => s.ScheduleId == id).SingleOrDefault();
+            return View(schedule);
+        }
+        [HttpPost]
+        public ActionResult DeleteSchedule(int id, Schedule schedule)
+        {
+            try
+            {
+                var deletedSchedule = db.Schedules.Where(d => d.ScheduleId == id).SingleOrDefault();
+                db.Schedules.Remove(deletedSchedule);
+                db.SaveChanges();
+                return RedirectToAction("AllSchedules");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         // GET: Manager/Create
         public ActionResult CreateManager()
         {

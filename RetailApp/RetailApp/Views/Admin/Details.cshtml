@@ -8,11 +8,11 @@
 
 <div>
     <h4>Catalog</h4>
-    @Html.HiddenFor(model => model.Product_Id)
+    
     <hr />
-    <dl class="dl-horizontal">       
+    <dl class="dl-horizontal">
 
-
+        @Html.HiddenFor(model => model.Product_Id)
         <dt>
             @Html.DisplayNameFor(model => model.BrandName)
         </dt>

@@ -28,11 +28,8 @@ namespace RetailApp.Controllers
         {
             var user = User.Identity.GetUserId();           
             var emp = db.Employees.Where(e => e.ApplicationUserId == user).Single();
-            var employeeSchedules = db.Schedules.Where(s => s.EmployeeId == emp.EmployeeId).ToList();
-            int scheduledDays = employeeSchedules.Count;
-
-            ViewBag.daysScheduled = scheduledDays;
-
+            var employeeSchedules = db.Schedules.Where(s => s.EmployeeId == emp.EmployeeId).ToList().OrderBy(e => e.StartTime);
+            
             return View(employeeSchedules);         
         }
 
@@ -194,10 +191,9 @@ namespace RetailApp.Controllers
         public ActionResult Appointments()
         {
             var appointments = db.Appointments.ToList();
-            return View(appointments);
+            var appointmentsByDate = appointments.OrderBy(a => a.AppointmentDate);
+            return View(appointmentsByDate);
         }
-
-   
 
         [HttpPost]
         public ActionResult CreateCharge(string stripeToken, Models.Inventory inventory)
