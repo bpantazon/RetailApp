@@ -17,7 +17,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <strong>@Html.ActionLink("RM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</strong>
+               
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -26,22 +27,21 @@
                         <li> @Html.ActionLink("Home", "ManagerHome", "Manager") </li>
                         <li> @Html.ActionLink("Inventory", "Inventory", "Manager") </li>
                         <li> @Html.ActionLink("Schedules", "AllSchedules", "Manager") </li>
-                        <li> @Html.ActionLink("Checkout", "CreateCharge", "Employee") </li>
+                        
                     }
                     else if (User.IsInRole("Employee"))
                     {
                         <li> @Html.ActionLink("Home", "EmployeeHome", "Employee") </li>
-                        <li> @Html.ActionLink("Inventory", "Inventory", "Manager") </li>
-                        <li> @Html.ActionLink("Schedules", "AllSchedules", "Manager") </li>
-                        <li> @Html.ActionLink("Checkout", "CreateCharge", "Employee") </li>
+                        <li> @Html.ActionLink("Inventory", "Inventory", "Employee") </li>
+                        <li> @Html.ActionLink("Appointments", "Appointments", "Employee") </li>
+                        
                     }
                     else
                     {                       
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Home", "PageRedirect", "Admin")</li>
+                        <li>@Html.ActionLink("Inventory", "PageRedirect", "Admin")</li>
+                        <li>@Html.ActionLink("Schedules", "PageRedirect", "Admin")</li>
                     }
-
 
                 </ul>
                 @Html.Partial("_LoginPartial")

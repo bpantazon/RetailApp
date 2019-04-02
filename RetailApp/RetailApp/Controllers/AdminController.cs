@@ -22,6 +22,11 @@ namespace RetailApp.Controllers
             db = new ApplicationDbContext();
         }
 
+        public ActionResult PageRedirect()
+        {
+            return View();
+        }
+
         // GET: Admin
         public ActionResult AdminHome()
         {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RetailApp.Models.Schedule>
+﻿@model RetailApp.Models.Employee
 @{
     ViewBag.Title = "EmployeeSales";
 }
@@ -14,7 +14,7 @@
             type: "POST",
             dataType: "json",
             contentType: "application/json",
-            url: '@Url.Action("VisualizeEmpData", "Manager")',
+            url: '@Url.Action("VisualizeEmpData", "Manager", new { id = Model.EmployeeId })',
             success: function (result) {
                 google.charts.load('current', {
                     'packages': ['corechart']

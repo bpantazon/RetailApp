@@ -34,7 +34,8 @@ namespace RetailApp.Controllers
         {
             int id = employee.EmployeeId;
             SalesForEmployee(id);
-            return View();
+
+            return View(employee);
         }
         public List<EmployeeSale> SalesForEmployee(int id)
         {
