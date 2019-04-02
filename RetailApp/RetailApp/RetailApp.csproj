@@ -193,6 +193,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -232,6 +233,14 @@
     <Compile Include="Migrations\201903312039397_RemoveAmountFromCharge.Designer.cs">
       <DependentUpon>201903312039397_RemoveAmountFromCharge.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904021533417_DisplayForAppt.cs" />
+    <Compile Include="Migrations\201904021533417_DisplayForAppt.Designer.cs">
+      <DependentUpon>201904021533417_DisplayForAppt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904021546356_DeleteStoreProduct.cs" />
+    <Compile Include="Migrations\201904021546356_DeleteStoreProduct.Designer.cs">
+      <DependentUpon>201904021546356_DeleteStoreProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -247,7 +256,6 @@
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\ScheduleVM.cs" />
     <Compile Include="Models\SelectEmployee.cs" />
-    <Compile Include="Models\StoreProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Catalog.cs" />
     <Compile Include="Startup.cs" />
@@ -337,6 +345,10 @@
     <Content Include="Views\Employee\MySales.cshtml" />
     <Content Include="Views\Manager\EmployeeSales.cshtml" />
     <Content Include="Views\Admin\PageRedirect.cshtml" />
+    <Content Include="Views\Employee\EditAppointment.cshtml" />
+    <Content Include="Views\Employee\AppointmentDetails.cshtml" />
+    <Content Include="Views\Employee\DeleteAppointment.cshtml" />
+    <Content Include="Views\Catalog\Catalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -379,6 +391,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903312039397_RemoveAmountFromCharge.resx">
       <DependentUpon>201903312039397_RemoveAmountFromCharge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021533417_DisplayForAppt.resx">
+      <DependentUpon>201904021533417_DisplayForAppt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021546356_DeleteStoreProduct.resx">
+      <DependentUpon>201904021546356_DeleteStoreProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -27,17 +27,22 @@
                         <li> @Html.ActionLink("Home", "ManagerHome", "Manager") </li>
                         <li> @Html.ActionLink("Inventory", "Inventory", "Manager") </li>
                         <li> @Html.ActionLink("Schedules", "AllSchedules", "Manager") </li>
-                        
+                        <li>@Html.ActionLink("Catalog", "Catalog", "Catalog")</li>
+
                     }
                     else if (User.IsInRole("Employee"))
                     {
                         <li> @Html.ActionLink("Home", "EmployeeHome", "Employee") </li>
                         <li> @Html.ActionLink("Inventory", "Inventory", "Employee") </li>
                         <li> @Html.ActionLink("Appointments", "Appointments", "Employee") </li>
-                        
+                        <li>@Html.ActionLink("Catalog", "Catalog", "Catalog")</li>
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+                        <li> @Html.ActionLink("Home", "AdminHome", "Admin") </li>
                     }
                     else
-                    {                       
+                    {
                         <li>@Html.ActionLink("Home", "PageRedirect", "Admin")</li>
                         <li>@Html.ActionLink("Inventory", "PageRedirect", "Admin")</li>
                         <li>@Html.ActionLink("Schedules", "PageRedirect", "Admin")</li>

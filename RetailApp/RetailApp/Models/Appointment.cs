@@ -15,20 +15,20 @@ namespace RetailApp.Models
         [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [Display(Name = "Appointment Date")]
+        [Display(Name = "Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy h:mm tt}")]
         public DateTime AppointmentDate { get; set; }
 
-        [Display(Name = "Customer First Name")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Customer Last Name")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Customer Contact Number")]
+        [Display(Name = "Contact Number")]
         public int PhoneNumber { get; set; }
 
-        [Display(Name = "Customer Email")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 }

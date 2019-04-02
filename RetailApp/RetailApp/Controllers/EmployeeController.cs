@@ -132,6 +132,52 @@ namespace RetailApp.Controllers
             return View("CreateAppointment", appointment);
         }
 
+        public ActionResult EditAppointment(int id)
+        {
+            var appointment = db.Appointments.Where(a => a.AppointmentId == id).SingleOrDefault();
+            return View(appointment);
+        }
+        [HttpPost]
+        public ActionResult EditAppointment(int id, Appointment appointment)
+        {
+            var editedAppt = db.Appointments.Where(e => e.AppointmentId == id).SingleOrDefault();
+            editedAppt.FirstName = appointment.FirstName;
+            editedAppt.LastName = appointment.LastName;
+            editedAppt.AppointmentDate = appointment.AppointmentDate;
+            editedAppt.Email = appointment.Email;
+            editedAppt.PhoneNumber = appointment.PhoneNumber;
+            editedAppt.Description = appointment.Description;
+            db.SaveChanges();
+            return RedirectToAction("Appointments");
+        }
+        public ActionResult AppointmentDetails (int id)
+        {
+            var appointment = db.Appointments.Where(a => a.AppointmentId == id).SingleOrDefault();
+            return View(appointment);
+        }
+
+        public ActionResult DeleteAppointment(int id)
+        {
+            var appointment = db.Appointments.Where(a => a.AppointmentId == id).SingleOrDefault();
+            return View(appointment);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAppointment(int id, Appointment appointment)
+        {            
+            try
+            {
+                var deletedAppt = db.Appointments.Where(d => d.AppointmentId == id).SingleOrDefault();
+                db.Appointments.Remove(deletedAppt);
+                db.SaveChanges();
+
+                return RedirectToAction("Appointments");
+            }
+            catch
+            {
+                return View();
+            }            
+        }
         public ActionResult CreateCharge(int id)
         {
             Models.Inventory inventory = db.Inventories.Where(i => i.InventoryId == id).SingleOrDefault();
@@ -151,14 +197,7 @@ namespace RetailApp.Controllers
             return View(appointments);
         }
 
-        public ActionResult AddSale(string sku)
-        {
-            var user = User.Identity.GetUserId();
-            var emp = db.Employees.Where(e => e.ApplicationUserId == user).Single();
-            var soldProduct = db.StoreProducts.Where(p => p.SKU == sku).Single();
-
-            return View();
-        }
+   
 
         [HttpPost]
         public ActionResult CreateCharge(string stripeToken, Models.Inventory inventory)
