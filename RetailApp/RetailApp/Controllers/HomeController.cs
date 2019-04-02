@@ -10,6 +10,18 @@ namespace RetailApp.Controllers
     {
         public ActionResult Index()
         {
+            if (User.IsInRole("Manager"))
+            {
+                return RedirectToAction("ManagerHome", "Manager");
+            }
+            else if (User.IsInRole("Employee"))
+            {
+                return RedirectToAction("EmployeeHome", "Employee");
+            }
+            else if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("AdminHome", "Admin");
+            }
             return View();
         }
 

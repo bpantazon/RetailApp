@@ -80,8 +80,8 @@ namespace RetailApp.Controllers
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                case SignInStatus.Success:                                       
+                    return RedirectToLocal(returnUrl);                                 
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -92,7 +92,7 @@ namespace RetailApp.Controllers
                     return View(model);
             }
         }
-
+    
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -407,7 +407,7 @@ namespace RetailApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //

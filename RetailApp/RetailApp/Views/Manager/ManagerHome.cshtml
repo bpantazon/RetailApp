@@ -14,7 +14,7 @@
     <table>
         <tr>
             <td>
-                @Html.DropDownListFor(e => e.First().EmployeeId, new SelectList(Model.AsEnumerable(), "EmployeeId", "LastName"))
+                @Html.DropDownListFor(e => e.First().EmployeeId, new SelectList(Model.AsEnumerable(), "EmployeeId", "LastName"), new { @class = "form-control" })
             </td>
         </tr>
        

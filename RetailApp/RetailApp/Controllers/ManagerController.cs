@@ -13,7 +13,6 @@ namespace RetailApp.Controllers
     {
         ApplicationDbContext db;
        
-
         public ManagerController()
         {
             db = new ApplicationDbContext();
@@ -28,7 +27,6 @@ namespace RetailApp.Controllers
             }
             return View(employeeList);
         }
-
     
         public ActionResult EmployeeSales(Employee employee)
         {
