@@ -18,16 +18,41 @@ namespace RetailApp.Controllers
         {
             db = new ApplicationDbContext();
         }
+
         public ActionResult ManagerHome()
         {
-            return View();
-        }
-        // GET: Manager
-        public ActionResult VisualizeData()
-        {         
-            return Json(InventoryResults(), JsonRequestBehavior.AllowGet);                   
+            IList<Employee> employeeList = new List<Employee>();
+            foreach (var emp in db.Employees)
+            {
+                employeeList.Add(emp);
+            }
+            return View(employeeList);
         }
 
+    
+        public ActionResult EmployeeSales(Employee employee)
+        {
+            int id = employee.EmployeeId;
+            SalesForEmployee(id);
+            return View();
+        }
+        public List<EmployeeSale> SalesForEmployee(int id)
+        {
+            //List<EmployeeSale> employeeSales = new List<EmployeeSale>();
+            var employee = db.Employees.Where(e => e.EmployeeId == id).SingleOrDefault();
+            var salesForEmp = db.EmployeeSales.Where(s => s.EmployeeId == employee.EmployeeId).ToList();
+            return salesForEmp;
+        }
+        public ActionResult VisualizeEmpData(int id)
+        {
+            return Json(SalesForEmployee(id), JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Manager
+        public ActionResult VisualizeData()
+        {
+            return Json(InventoryResults(), JsonRequestBehavior.AllowGet);
+        }
     
         public List<Inventory> InventoryResults()
         {

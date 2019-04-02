@@ -1,4 +1,4 @@
-﻿@*@model RetailApp.Models.Sale*@
+﻿@model IEnumerable<RetailApp.Models.Employee>
 
 @{
     ViewBag.Title = "ManagerHome";
@@ -8,6 +8,23 @@
 <div>
     <div>  @Html.ActionLink("Schedules", "AllSchedules")</div>
 </div>
+
+@using (Html.BeginForm("EmployeeSales", "Manager"))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.DropDownListFor(e => e.First().EmployeeId, new SelectList(Model.AsEnumerable(), "EmployeeId", "LastName"))
+            </td>
+        </tr>
+       
+        <tr>
+            <td>
+                <input type="submit" value="Filter" />
+            </td>
+        </tr>
+    </table>
+}
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -41,8 +58,8 @@
 
         var columnChartOptions = {
             title: "Overall Sales",
-            width: 1000,
-            height: 400,
+            width: 1200,
+            height: 600,
             bar: {groupWidth: "20%"}
         }
 

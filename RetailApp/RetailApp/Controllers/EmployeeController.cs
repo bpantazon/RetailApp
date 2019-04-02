@@ -46,7 +46,6 @@ namespace RetailApp.Controllers
             return Json(EmployeeResults(), JsonRequestBehavior.AllowGet);
         }
 
-
         public List<EmployeeSale> EmployeeResults()
         {
             List<EmployeeSale> employeeSales = new List<EmployeeSale>();
@@ -56,7 +55,6 @@ namespace RetailApp.Controllers
 
             return employeeSales;
         }
-
 
         // GET: Employee/Details/5
         public ActionResult InventoryDetails(int id)

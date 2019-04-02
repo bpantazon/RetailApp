@@ -21,10 +21,28 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Checkout", "CreateCharge", "Employee")</li>
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <li> @Html.ActionLink("Home", "ManagerHome", "Manager") </li>
+                        <li> @Html.ActionLink("Inventory", "Inventory", "Manager") </li>
+                        <li> @Html.ActionLink("Schedules", "AllSchedules", "Manager") </li>
+                        <li> @Html.ActionLink("Checkout", "CreateCharge", "Employee") </li>
+                    }
+                    else if (User.IsInRole("Employee"))
+                    {
+                        <li> @Html.ActionLink("Home", "EmployeeHome", "Employee") </li>
+                        <li> @Html.ActionLink("Inventory", "Inventory", "Manager") </li>
+                        <li> @Html.ActionLink("Schedules", "AllSchedules", "Manager") </li>
+                        <li> @Html.ActionLink("Checkout", "CreateCharge", "Employee") </li>
+                    }
+                    else
+                    {                       
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    }
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +52,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Retail Manager</p>
         </footer>
     </div>
 

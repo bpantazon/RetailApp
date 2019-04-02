@@ -37,9 +37,13 @@
 
         var columnChartOptions = {
             title: "Overall Sales",
-            width: 1000,
-            height: 400,
-            bar: {groupWidth: "20%"}
+            width: 1100,
+            height: 500,
+            bar: { groupWidth: "20%" },
+            is3D: true,
+            fontSize: 20
+            
+
         }
 
         var columnChart = new google.visualization.PieChart(document.getElementById('columnchart_div'));
