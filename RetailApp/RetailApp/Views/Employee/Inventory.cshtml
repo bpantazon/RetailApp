@@ -4,10 +4,10 @@
     ViewBag.Title = "Inventory";
 }
 
-<h2>Inventory</h2>
+<h2>Local Inventory</h2>
 
 <p>
-    @Html.ActionLink("Create New", "AddInventory")
+    <a href="#" class="btn btn-primary btn-default" onclick="location.href='@Url.Action("AddInventory", "Employee")'">Add New Item</a>
 </p>
 
 <table class="table table-hover table-responsive table-bordered table-striped">
@@ -55,8 +55,8 @@
         </td>
         <td>
             @Html.ActionLink("Sell", "CreateCharge", new { id = item.InventoryId }) |
-            @Html.ActionLink("Edit", "EditInventory", new { id=item.InventoryId }) |
-            @Html.ActionLink("Info", "InventoryDetails", new { id=item.InventoryId }) 
+            @Html.ActionLink("Edit", "EditInventory", new { id=item.InventoryId }) 
+      
          
         </td>
     </tr>

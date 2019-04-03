@@ -5,9 +5,7 @@
 }
 
 <h2>Manager Home</h2>
-<div>
-    <div>  @Html.ActionLink("Schedules", "AllSchedules")</div>
-</div>
+
 
 @using (Html.BeginForm("EmployeeSales", "Manager"))
 {
@@ -16,11 +14,10 @@
             <td>
                 @Html.DropDownListFor(e => e.First().EmployeeId, new SelectList(Model.AsEnumerable(), "EmployeeId", "LastName"), new { @class = "form-control" })
             </td>
-        </tr>
-       
+        </tr>       
         <tr>
             <td>
-                <input type="submit" value="Filter" />
+                <input type="submit" value="Filter" class="info" />
             </td>
         </tr>
     </table>

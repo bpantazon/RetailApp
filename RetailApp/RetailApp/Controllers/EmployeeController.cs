@@ -119,7 +119,7 @@ namespace RetailApp.Controllers
 
         public ActionResult Inventory()
         {
-            var inventory = db.Inventories.ToList();
+            var inventory = db.Inventories.ToList().OrderBy(i => i.BrandName);
             return View(inventory);
         }
         
@@ -267,37 +267,44 @@ namespace RetailApp.Controllers
         [HttpPost]
         public ActionResult CreateAppointment(Appointment appointment)
         {
-
-            db.Appointments.Add(appointment);
-            db.SaveChanges();
-            
-
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress($"{appointment.FirstName}", "retailManagerTest@gmail.com"));
-            message.To.Add(new MailboxAddress($"{appointment.FirstName}, {appointment.LastName}", "retailManagerTest@gmail.com")); //sending email to the test address for testing purposes
-            message.Subject = "Your Appointment";
-
-            message.Body = new TextPart("plain")
+            try
             {
-                Text = 
-                $@"Hello {appointment.FirstName},
+                db.Appointments.Add(appointment);
+                db.SaveChanges();
+
+
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress($"{appointment.FirstName}", "retailManagerTest@gmail.com"));
+                message.To.Add(new MailboxAddress($"{appointment.FirstName}, {appointment.LastName}", "retailManagerTest@gmail.com")); //sending email to the test address for testing purposes
+                message.Subject = "Your Appointment";
+
+                message.Body = new TextPart("plain")
+                {
+                    Text =
+                    $@"Hello {appointment.FirstName},
 
                 This email is confirming your appointment on {appointment.AppointmentDate}. We'll see you soon!
 
                 From, 
 
                 The Retail Team"
-            };
-            using (var client = new SmtpClient())
-            {
-                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                };
+                using (var client = new SmtpClient())
+                {
+                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("retailManagerTest", "Ret@il1!");
-                client.Send(message);
-                client.Disconnect(true);
-            }
+                    client.Connect("smtp.gmail.com", 587, false);
+                    client.Authenticate("retailManagerTest", "Ret@il1!");
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
                 return RedirectToAction("Appointments");
+            }
+            catch
+            {
+                return View();
+            }
+            
         }
         public ActionResult AddInventory()
         {

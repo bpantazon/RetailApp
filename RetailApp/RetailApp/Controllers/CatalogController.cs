@@ -18,6 +18,7 @@ namespace RetailApp.Controllers
         {
             db = new ApplicationDbContext();
         }
+
         // GET: Catalog
         public ActionResult Catalog()
         {
@@ -49,8 +50,8 @@ namespace RetailApp.Controllers
                         catalogItems.Add(newCatalog);
                     }
                 }
-                
-                return View(catalogItems);
+                var alphabetizedList = catalogItems.OrderBy(c => c.BrandName).ToList();
+                return View(alphabetizedList);
             }
             catch
             {

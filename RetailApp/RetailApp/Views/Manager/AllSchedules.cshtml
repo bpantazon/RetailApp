@@ -5,9 +5,9 @@
 }
 
 <h2>All Schedules</h2>
-<div>  @Html.ActionLink("Manager Home", "ManagerHome")</div>
+
 <p>
-    @Html.ActionLink("Create New", "CreateSchedule")
+    <a href="#" class="btn btn-primary btn-default" onclick="location.href='@Url.Action("CreateSchedule", "Manager")'">Add Schedule</a>
 </p>
 
     <table class="table table-responsive table-striped table-hover table-striped table-bordered"> 
