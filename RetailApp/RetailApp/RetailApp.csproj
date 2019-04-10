@@ -241,6 +241,10 @@
     <Compile Include="Migrations\201904021546356_DeleteStoreProduct.Designer.cs">
       <DependentUpon>201904021546356_DeleteStoreProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904101508515_TryNotMappedNameEmployee.cs" />
+    <Compile Include="Migrations\201904101508515_TryNotMappedNameEmployee.Designer.cs">
+      <DependentUpon>201904101508515_TryNotMappedNameEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -400,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904021546356_DeleteStoreProduct.resx">
       <DependentUpon>201904021546356_DeleteStoreProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101508515_TryNotMappedNameEmployee.resx">
+      <DependentUpon>201904101508515_TryNotMappedNameEmployee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

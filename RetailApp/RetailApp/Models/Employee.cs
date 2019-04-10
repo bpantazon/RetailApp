@@ -18,6 +18,9 @@ namespace RetailApp.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [NotMapped]
+        public string FullName { get { return FirstName + " " + LastName; } }
+        
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

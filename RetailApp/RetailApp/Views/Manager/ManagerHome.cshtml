@@ -12,7 +12,7 @@
     <table>
         <tr>
             <td>
-                @Html.DropDownListFor(e => e.First().EmployeeId, new SelectList(Model.AsEnumerable(), "EmployeeId", "LastName"), new { @class = "form-control" })
+                @Html.DropDownListFor(e => e.First().EmployeeId, new SelectList(Model.AsEnumerable(), "EmployeeId", "FullName"), new { @class = "form-control" })
             </td>
         </tr>       
         <tr>
@@ -55,9 +55,9 @@
 
         var columnChartOptions = {
             title: "Overall Sales",
-            width: 1200,
-            height: 600,
-            bar: {groupWidth: "20%"}
+            width: 1100,
+            height: 500,
+            bar: {groupWidth: "30%"}
         }
 
         var columnChart = new google.visualization.PieChart(document.getElementById('columnchart_div'));
