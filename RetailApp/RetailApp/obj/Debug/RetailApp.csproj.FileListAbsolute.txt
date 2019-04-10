@@ -225,3 +225,4 @@ C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\De
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.DisplayForAppt.resources
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.DeleteStoreProduct.resources
 C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.TryNotMappedNameEmployee.resources
+C:\Users\Ben Pantazon\Documents\devCodeCamp\RetailApp\RetailApp\RetailApp\obj\Debug\RetailApp.Migrations.CategoryTable.resources

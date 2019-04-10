@@ -38,5 +38,6 @@ namespace RetailApp.Models
         
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<EmployeeSale> EmployeeSales { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
