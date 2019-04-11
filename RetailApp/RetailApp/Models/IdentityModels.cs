@@ -34,8 +34,7 @@ namespace RetailApp.Models
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Sale> Sales { get; set; }
-        public DbSet<Schedule> Schedules { get; set; }
-        
+        public DbSet<Schedule> Schedules { get; set; }        
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<EmployeeSale> EmployeeSales { get; set; }
         public DbSet<Category> Categories { get; set; }

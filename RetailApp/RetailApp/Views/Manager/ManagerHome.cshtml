@@ -8,7 +8,10 @@
 
 
 @using (Html.BeginForm("EmployeeSales", "Manager"))
-{
+{<br />
+    <div>
+        <strong>Filter By Employee</strong>
+    </div>
     <table>
         <tr>
             <td>
@@ -17,7 +20,7 @@
         </tr>       
         <tr>
             <td>
-                <input type="submit" value="Filter" class="info" />
+                <input type="submit" value="Filter" class="btn btn-primary" />
             </td>
         </tr>
     </table>
@@ -55,8 +58,8 @@
 
         var columnChartOptions = {
             title: "Overall Sales",
-            width: 1100,
-            height: 500,
+            width: 1200,
+            height: 600,
             bar: {groupWidth: "30%"}
         }
 

@@ -239,6 +239,29 @@ namespace RetailApp.Controllers
                 return View();
             }
         }
+
+        public ActionResult CreateCategory()
+        {
+            Category category = new Category();
+
+            return View("CreateCategory", category);
+        }
+        [HttpPost]
+        public ActionResult CreateCategory(Category category)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                db.Categories.Add(category);
+
+                db.SaveChanges();
+                return RedirectToAction("ManagerHome");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         // GET: Manager/Create
         public ActionResult CreateManager()
         {

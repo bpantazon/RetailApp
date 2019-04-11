@@ -281,9 +281,9 @@ namespace RetailApp.Controllers
                 message.Body = new TextPart("plain")
                 {
                     Text =
-                    $@"Hello {appointment.FirstName},
+                $@"Hello {appointment.FirstName},
 
-                This email is confirming your appointment on {appointment.AppointmentDate}. We'll see you soon!
+                    This email is confirming your appointment on {appointment.AppointmentDate}. We'll see you soon!
 
                 From, 
 

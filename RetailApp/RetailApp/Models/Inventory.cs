@@ -26,5 +26,6 @@ namespace RetailApp.Models
         public string Category { get; set; }
 
         public int Sold { get; set; }
+
     }
 }
